@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "enhanced-cd-app",
+  "version": "0.1.0",
+  "identifier": "com.giann.enhanced-cd-app",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Enhanced CD :: White Pony Edition",
+        "width": 1024,
+        "height": 768,
+        "resizable": false,
+        "fullscreen": false,
+        "decorations": true,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: asset: cd-content: https://asset.localhost; script-src 'self' 'unsafe-inline' 'unsafe-eval' cd-content:; style-src 'self' 'unsafe-inline'; img-src 'self' data: asset: cd-content: https://asset.localhost blob:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' data: blob: cd-content:; frame-src 'self' cd-content:",
+      "assetProtocol": {
+        "enable": true,
+        "scope": ["**"]
+      },
+      "headers": {
+        "Cross-Origin-Opener-Policy": "same-origin",
+        "Cross-Origin-Embedder-Policy": "require-corp"
+      }
+    },
+    "withGlobalTauri": true
+  },
+  "bundle": {
+    "active": true,
+    "targets": "nsis",
+    "windows": {
+      "nsis": {
+        "installerIcon": "icons/icon.ico",
+        "installMode": "perMachine",
+        "languages": ["English"],
+        "displayLanguageSelector": false
+      }
+    },
+    "createUpdaterArtifacts": false,
+    "shortDescription": "Enhanced CD - White Pony Edition",
+    "longDescription": "A nostalgic multimedia shell inspired by Enhanced CDs from the year 2000. Features audio player, video gallery, archives, and an integrated game.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "resources": ["game"]
+  }
+}

@@ -1,0 +1,151 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap");
+
+@theme {
+  --color-void: #0a0a0a;
+  --color-concrete: #1a1a1a;
+  --color-steel: #2a2a2a;
+  --color-ash: #3a3a3a;
+  --color-smoke: #4a4a4a;
+  --color-fog: #6a6a6a;
+  --color-silver: #8a8a8a;
+  --color-chrome: #b0b0b0;
+  --color-electric: #00d4ff;
+  --color-electric-dark: #0099cc;
+  --color-electric-dim: #004466;
+
+  --font-family-mono: "IBM Plex Mono", "Courier New", monospace;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family-mono);
+  background-color: var(--color-void);
+  color: var(--color-chrome);
+  overflow: hidden;
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-concrete);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-steel);
+  border: 1px solid var(--color-fog);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-ash);
+}
+
+/* Scanline overlay effect */
+.scanlines {
+  position: relative;
+}
+
+.scanlines::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 1000;
+  animation: flicker 0.15s infinite;
+}
+
+/* CRT Glow effect */
+.crt-glow {
+  text-shadow:
+    0 0 5px rgba(0, 212, 255, 0.5),
+    0 0 10px rgba(0, 212, 255, 0.3),
+    0 0 15px rgba(0, 212, 255, 0.2);
+}
+
+/* Brutal button style */
+.btn-brutal {
+  font-family: var(--font-family-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-concrete);
+  border: 3px solid var(--color-electric);
+  color: var(--color-electric);
+  box-shadow: 3px 3px 0px 0px var(--color-electric);
+  transition: all 100ms;
+}
+
+.btn-brutal:hover {
+  background-color: var(--color-electric);
+  color: var(--color-void);
+  box-shadow: 0px 0px 0px 0px var(--color-electric);
+}
+
+.btn-brutal:active {
+  transform: translate(1px, 1px);
+}
+
+/* Status indicators */
+.status-indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 0.125rem;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.status-active {
+  background-color: var(--color-electric);
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.8);
+}
+
+.status-inactive {
+  background-color: var(--color-steel);
+}
+
+/* Animations */
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.96;
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

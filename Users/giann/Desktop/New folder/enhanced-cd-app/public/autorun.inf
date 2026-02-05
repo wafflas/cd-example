@@ -1,0 +1,10 @@
+[autorun]
+open=enhanced-cd-app.exe
+icon=enhanced-cd-app.exe,0
+label=Enhanced CD - White Pony Edition
+action=Launch Enhanced CD Application
+
+[Content]
+MusicFiles=true
+PictureFiles=false
+VideoFiles=false
